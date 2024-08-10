@@ -255,7 +255,7 @@ const FileUpload = () => {
         Upload Files
       </button>
 
-      {/* Display NIC Details */}
+      
       <div className="mt-10">
         <h4 className="text-lg font-semibold mb-4 text-gray-700">NIC Details:</h4>
         {nicData.length > 0 ? (
