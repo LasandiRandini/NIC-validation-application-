@@ -1,0 +1,6 @@
+.custom-width {
+    width: 256px; /* Set the width to 256px */
+  }
+  .flex-grow {
+    flex-grow: 1; /* Allow this div to take the remaining space */
+  }
