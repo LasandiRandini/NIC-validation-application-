@@ -113,8 +113,8 @@ const FileUpload = () => {
 
   const handleUpload = async () => {
     const formData = new FormData();
-    files.forEach((file, index) => {
-      formData.append('files', file); // Ensure the key is 'files' to match multer's array field
+    files.forEach((file) => {
+      formData.append('files', file); 
     });
 
     try {

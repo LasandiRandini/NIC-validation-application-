@@ -7,9 +7,9 @@ import { Outlet } from 'react-router-dom';
 
 import Login from './Pages/Userauthentication/login'
 import Register from './Pages/Userauthentication/register'
-import Dashboardpage from './Pages/Csv_uploadpage';
+import FileUplaod from './Pages/Csv_uploadpage';
 import DashNavbar from './components/dashboard_nav';
-
+import Dashboard from "./Pages/dashboard";
 
 
 
@@ -23,6 +23,7 @@ const DashLayout = () => {
         <div className="w-[256px]">
 
           <DashNavbar />
+          
         </div>
 
         <div className="w-full">
@@ -41,7 +42,8 @@ const router = createBrowserRouter([
   {
     path: "/", element: <DashLayout />,
     children: [
-      { path: "/dashboard", element: <Dashboardpage />, },
+      { path: "/dashboard", element: <Dashboard />, },
+      { path: "/fileupload", element: <FileUplaod />, },
     ],
   }
 ]);

@@ -24,7 +24,7 @@ export const validateNICs = (req, res) => {
                 .on('data', (row) => {
                     console.log('Row data:', row);
 
-                    const nicNumber = row['NIC'] || row['nic'] || row['Nic']; // Handle possible variations in the header name
+                    const nicNumber = row['NIC'] || row['nic'] || row['Nic'] || row['NIC Number'] || row['nic number'] // Handle possible variations in the header name
                     console.log('Extracted NIC:', nicNumber); // Log the NIC number to ensure it's being extracted
 
                     if (nicNumber) {
