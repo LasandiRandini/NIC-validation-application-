@@ -1,14 +1,17 @@
-// import { useState } from 'react';
+// import { useEffect, useState } from 'react';
 // import { useDropzone } from 'react-dropzone';
 // import axios from 'axios';
 
 // const FileUpload = () => {
 //   const [files, setFiles] = useState([]);
+//   const [nicData, setNicData] = useState([]);
 //   const [errorMessage, setErrorMessage] = useState('');
+//   const [successMessage, setSuccessMessage] = useState('');
 
 //   const onDrop = (acceptedFiles) => {
 //     if (acceptedFiles.length !== 4) {
 //       setErrorMessage('Please upload exactly four CSV files.');
+//       setSuccessMessage(''); 
 //       return;
 //     }
 //     setFiles(acceptedFiles);
@@ -23,8 +26,8 @@
 
 //   const handleUpload = async () => {
 //     const formData = new FormData();
-//     files.forEach((file, index) => {
-//       formData.append(`file${index + 1}`, file);
+//     files.forEach((file) => {
+//       formData.append('files', file); 
 //     });
 
 //     try {
@@ -34,13 +37,36 @@
 //         },
 //       });
 //       console.log('Files uploaded successfully:', response.data);
+//       setSuccessMessage('Files uploaded and sent for validation successfully.');
+//       setFiles([]); // Clear files after successful upload
+
+//       // Clear existing NIC data before fetching new data
+//       setNicData([]);
+
+//       // Fetch the NIC data after successful upload
+//       fetchNICDetails();
 //     } catch (error) {
 //       console.error('Error uploading files:', error);
+//       setErrorMessage('Failed to upload files. Please try again.');
 //     }
 //   };
 
+//   const fetchNICDetails = async () => {
+//     try {
+//       const response = await axios.get('http://localhost:3004/api/nicvalidate/nic-details');
+//       setNicData(response.data);
+//     } catch (error) {
+//       console.error('Error fetching NIC details:', error);
+//       setErrorMessage('Failed to fetch NIC details. Please try again.');
+//     }
+//   };
+
+//   useEffect(() => {
+//     // Fetch NIC details only when needed
+//   }, []);
+
 //   return (
-//     <div className="max-w-lg mx-auto mt-10 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+//     <div className="max-w-6xl mx-auto mt-10 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
 //       <div
 //         {...getRootProps({
 //           className: `border-2 border-dashed p-8 rounded-md text-center cursor-pointer transition-colors duration-300 ${
@@ -59,6 +85,9 @@
 //       </div>
 //       {errorMessage && (
 //         <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+//       )}
+//       {successMessage && (
+//         <p className="text-green-500 text-sm mt-2">{successMessage}</p>
 //       )}
 //       <div className="mt-6">
 //         <h4 className="text-lg font-semibold mb-2 text-gray-700">Selected Files:</h4>
@@ -79,6 +108,35 @@
 //       >
 //         Upload Files
 //       </button>
+
+//       {/* Display NIC Details */}
+//       <div className="mt-10">
+//         <h4 className="text-lg font-semibold mb-4 text-gray-700">NIC Details:</h4>
+//         {nicData.length > 0 ? (
+//           <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+//             <thead>
+//               <tr>
+//                 <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">NIC Number</th>
+//                 <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">Birthday</th>
+//                 <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">Age</th>
+//                 <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">Gender</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {nicData.map((detail, index) => (
+//                 <tr key={index}>
+//                   <td className="py-2 px-4 border-b text-gray-700">{detail.nic_number}</td>
+//                   <td className="py-2 px-4 border-b text-gray-700">{detail.birthday}</td>
+//                   <td className="py-2 px-4 border-b text-gray-700">{detail.age}</td>
+//                   <td className="py-2 px-4 border-b text-gray-700">{detail.gender}</td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         ) : (
+//           <p className="text-gray-600">No NIC details available.</p>
+//         )}
+//       </div>
 //     </div>
 //   );
 // };
@@ -86,19 +144,20 @@
 // export default FileUpload;
 
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 
 const FileUpload = () => {
   const [files, setFiles] = useState([]);
+  const [nicData, setNicData] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const onDrop = (acceptedFiles) => {
     if (acceptedFiles.length !== 4) {
       setErrorMessage('Please upload exactly four CSV files.');
-      setSuccessMessage(''); // Clear any success message
+      setSuccessMessage(''); 
       return;
     }
     setFiles(acceptedFiles);
@@ -126,14 +185,34 @@ const FileUpload = () => {
       console.log('Files uploaded successfully:', response.data);
       setSuccessMessage('Files uploaded and sent for validation successfully.');
       setFiles([]); // Clear files after successful upload
+
+      // Clear existing NIC data before fetching new data
+      setNicData([]);
+
+      // Fetch the NIC data after successful upload
+      fetchNICDetails();
     } catch (error) {
       console.error('Error uploading files:', error);
       setErrorMessage('Failed to upload files. Please try again.');
     }
   };
 
+  const fetchNICDetails = async () => {
+    try {
+      const response = await axios.get('http://localhost:3004/api/nicvalidate/nic-details');
+      setNicData(response.data);
+    } catch (error) {
+      console.error('Error fetching NIC details:', error);
+      setErrorMessage('Failed to fetch NIC details. Please try again.');
+    }
+  };
+
+  useEffect(() => {
+    // Fetch NIC details only when needed
+  }, []);
+
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <div className="max-w-6xl mx-auto mt-10 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
       <div
         {...getRootProps({
           className: `border-2 border-dashed p-8 rounded-md text-center cursor-pointer transition-colors duration-300 ${
@@ -175,13 +254,40 @@ const FileUpload = () => {
       >
         Upload Files
       </button>
+
+      {/* Display NIC Details */}
+      <div className="mt-10">
+        <h4 className="text-lg font-semibold mb-4 text-gray-700">NIC Details:</h4>
+        {nicData.length > 0 ? (
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">NIC Number</th>
+                <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">Birthday</th>
+                <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">Age</th>
+                <th className="py-2 px-4 bg-gray-100 border-b text-left text-gray-700">Gender</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nicData.map((detail, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 border-b text-gray-700">{detail.nic_number}</td>
+                  <td className="py-2 px-4 border-b text-gray-700">{detail.birthday}</td>
+                  <td className="py-2 px-4 border-b text-gray-700">{detail.age}</td>
+                  <td className="py-2 px-4 border-b text-gray-700">{detail.gender}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-gray-600">No NIC details available.</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default FileUpload;
-
-
 
 
 
