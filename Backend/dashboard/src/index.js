@@ -5,13 +5,13 @@ import dashboardRoutes from './routes/dashboard_route.js';
 
 const app = express();
 
-// Middleware
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/dashboard', dashboardRoutes);
+app.use('api/dashboard', dashboardRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3003;

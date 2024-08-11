@@ -177,7 +177,7 @@ const FileUpload = () => {
     });
 
     try {
-      const response = await axios.post('http://localhost:3000/api/files/upload', formData, {
+      const response = await axios.post('http://localhost:3005/api/files/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -199,7 +199,7 @@ const FileUpload = () => {
 
   const fetchNICDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:3004/api/nicvalidate/nic-details');
+      const response = await axios.get('http://localhost:3005/api/nicvalidate/nic-details');
       setNicData(response.data);
     } catch (error) {
       console.error('Error fetching NIC details:', error);

@@ -9,7 +9,8 @@ import Login from './Pages/Userauthentication/login'
 import Register from './Pages/Userauthentication/register'
 import FileUplaod from './Pages/Csv_uploadpage';
 import DashNavbar from './components/dashboard_nav';
-import Dashboard from "./Pages/dashboard";
+import Dashboard from './Pages/dashboard';
+import Report from './Pages/report';
 
 
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <Dashboard />, },
       { path: "/fileupload", element: <FileUplaod />, },
+      { path: "/report", element: <Report />, },
     ],
   }
 ]);

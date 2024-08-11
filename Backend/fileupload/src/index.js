@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-// import fileUploadRoutes from './routes/fileupload_route.js';
 import fileUploadRoutes from './routes/fileupload_route.js';
 
 const app = express();

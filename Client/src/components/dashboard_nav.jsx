@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   ClipboardDocumentListIcon,
-  Cog8ToothIcon,
+  
   ArrowUturnLeftIcon,
   ChartBarIcon,
   FolderPlusIcon,
@@ -100,7 +100,7 @@ const DashNav = () => {
           </div>
         </Link>
 
-        <Link to="/reports">
+        <Link to="/report">
           <div
             className={`flex items-center pl-4 gap-3 py-2 mt-2 rounded-lg cursor-pointer transition-all duration-200 ${
               activeBar === "reports"
@@ -114,19 +114,7 @@ const DashNav = () => {
           </div>
         </Link>
 
-        <Link to="/setting">
-          <div
-            className={`flex items-center pl-4 gap-3 py-2 mt-2 rounded-lg cursor-pointer transition-all duration-200 ${
-              activeBar === "setting"
-                ? "text-white mb-2 bg-blue-400"
-                : "hover:bg-blue-400 hover:text-white"
-            }`}
-            onClick={() => setActiveBar("setting")}
-          >
-            <Cog8ToothIcon className="h-10 w-10" />
-            <p className="text-sm font-bold">Setting</p>
-          </div>
-        </Link>
+       
 
         <div className="absolute bottom-4 w-full">
           <div
