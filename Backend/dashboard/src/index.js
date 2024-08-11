@@ -3,9 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dashboardRoutes from './routes/dashboard_route.js';
 
-
 const app = express();
-
 
 // Middleware
 app.use(cors());
