@@ -74,8 +74,10 @@ import FileUpload from './Pages/Csv_uploadpage';
 import DashNavbar from './components/dashboard_nav';
 import Dashboard from './Pages/dashboard';
 import Report from './Pages/report';
+import PasswordReset from './Pages/PasswordResetPages/PassowrdReset';
+import PasswordForgot from './Pages/PasswordResetPages/PasswordForgot';
 
-// Layout component for dashboard-related routes
+
 const DashLayout = () => {
   return (
     <div className="flex">
@@ -89,10 +91,12 @@ const DashLayout = () => {
   );
 };
 
-// Router configuration
+
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
   { path: "/register", element: <Register /> },
+  { path:"/passwordreset/:token", element:<PasswordReset />},
+  { path: "/passwordforgot", element: <PasswordForgot /> },
   {
     path: "/", element: <DashLayout />,
     children: [
