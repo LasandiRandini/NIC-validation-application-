@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors());
 // Use file upload routes
-app.use('/api/files', fileUploadRoutes);
+app.use('/files', fileUploadRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (values) => {
     try {
-      const res = await axios.post("http://localhost:3001/api/loginRoutes/login", values);
+      const res = await axios.post("http://localhost:5000/api/user/loginRoutes/login", values);
       setCurrentUser(res.data);
       return res.data; 
     } catch (error) {
@@ -32,7 +32,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:3001/api/loginRoutes/logout"); 
+      await axios.post("http://localhost:5000/api/user/loginRoutes/logout"); 
       setCurrentUser(null);
     } catch (error) {
       console.error("Logout failed:", error);

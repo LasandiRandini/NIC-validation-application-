@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/nicvalidate', nicValidationRoutes);
+app.use('/nicvalidate', nicValidationRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3004;

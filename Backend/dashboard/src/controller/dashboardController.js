@@ -66,7 +66,7 @@ export const getAgeDistribution = async (req, res) => {
 
         console.log('Database query result:', results);
 
-        res.status(200).json(results); // Use JSON response format
+        res.status(200).json(results); 
     } catch (error) {
         console.error('Error fetching age distribution:', error.message);
         res.status(500).json({ message: 'Failed to fetch age distribution. Please try again.' });

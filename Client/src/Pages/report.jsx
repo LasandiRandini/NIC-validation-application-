@@ -157,7 +157,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3007/api/report/getdetails');
+        const response = await axios.get('http://localhost:3007/api/report/report/getdetails');
         setDetailsData(response.data);
         setFilteredData(response.data);
       } catch (err) {

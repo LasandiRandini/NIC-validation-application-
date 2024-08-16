@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.use('api/dashboard', dashboardRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3003;

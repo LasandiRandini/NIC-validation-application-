@@ -9,9 +9,9 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api/registerRoutes', registerRoutes);
-app.use('/api/loginRoutes', loginRoutes);
-app.use('/api/passwordRoutes', passwordRoutes);
+app.use('/registerRoutes', registerRoutes);
+app.use('/loginRoutes', loginRoutes);
+app.use('/passwordRoutes', passwordRoutes);
 
 
 const PORT = process.env.PORT || 3001;

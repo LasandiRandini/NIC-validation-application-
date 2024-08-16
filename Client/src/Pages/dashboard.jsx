@@ -13,9 +13,9 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const [genderResponse, ageResponse, totalRecordsResponse] = await Promise.all([
-          axios.get('http://localhost:3003/api/dashboard/gender-counts'),
-          axios.get('http://localhost:3003/api/dashboard/age-distribution'),
-          axios.get('http://localhost:3003/api/dashboard/getdetails'),
+          axios.get('http://localhost:5000/api/dashboard/dashboard/gender-counts'),
+          axios.get('http://localhost:5000/api/dashboard/dashboard/age-distribution'),
+          axios.get('http://localhost:5000/api/dashboard/dashboard/getdetails'),
         ]);
 
         setGenderData(genderResponse.data);
