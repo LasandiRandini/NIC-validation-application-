@@ -11,7 +11,7 @@ export const getAllDetails = async (req, res) => {
 
         console.log('Database query result:', results);
 
-        res.status(200).json(results); // Use JSON response format
+        res.status(200).json(results); 
     } catch (error) {
         console.error('Error fetching all details:', error.message);
         res.status(500).json({ message: 'Failed to fetch details. Please try again.' });
@@ -29,7 +29,7 @@ export const getGenderCounts = async (req, res) => {
 
         console.log('Database query result:', results);
 
-        res.status(200).json(results); // Use JSON response format
+        res.status(200).json(results); 
     } catch (error) {
         console.error('Error fetching gender counts:', error.message);
         res.status(500).json({ message: 'Failed to fetch gender counts. Please try again.' });
@@ -38,7 +38,7 @@ export const getGenderCounts = async (req, res) => {
 
 
 export const getAgeDistribution = async (req, res) => {
-    // SQL query to group ages into ranges and count occurrences by gender
+    
     const sql = `
         SELECT 
             CASE 
