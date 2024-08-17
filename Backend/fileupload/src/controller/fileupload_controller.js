@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import axios from 'axios';
 
-// Configure multer storage
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -17,17 +17,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).array('files', 4);
 
-// Ensure the 'uploads' directory exists
+
 const uploadDir = 'uploads';
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-// Get the directory name
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Controller function for uploading files
+
 export const uploadFiles = (req, res) => {
   upload(req, res, async (err) => {
     if (err) {
