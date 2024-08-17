@@ -39,10 +39,10 @@ export const uploadFiles = (req, res) => {
     }
 
     try {
-      // Prepare file paths for NIC Validation Service
+      
       const filePaths = req.files.map(file => path.join(__dirname, '../../', file.path));
 
-      // Comment out or remove the following section to prevent sending files to NIC Validation Service
+      
       
       const validationResponse = await axios.post('http://localhost:3004/api/nicvalidate/validate-nics', {
         files: filePaths,
