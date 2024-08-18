@@ -48,9 +48,6 @@ export const uploadFiles = (req, res) => {
         files: filePaths,
       });
       
-
-      // Respond with a success message and file paths
-      // res.status(200).json({ message: 'Files uploaded successfully.', data: filePaths });
       
       res.status(200).json({ message: 'Files uploaded and sent for validation.', data: validationResponse.data });
     } catch (error) {
