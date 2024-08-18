@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -20,7 +22,6 @@ const Dashboard = () => {
 
         setGenderData(genderResponse.data);
 
-        // Transform age distribution data for BarChart
         const transformedAgeData = ageResponse.data.reduce((acc, curr) => {
           const existingAgeRange = acc.find((item) => item.age_range === curr.age_range);
           if (existingAgeRange) {
@@ -47,25 +48,22 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  // Define colors for specific genders
   const genderColors = {
-    male: '#0088FE', // Blue
-    female: '#FF8042', // Orange
+    male: '#64B5F6',  
+    female: '#F06292',  
   };
 
-  if (loading) return <p className="text-center">Loading...</p>;
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+  if (loading) return <p className="text-center text-lg">Loading...</p>;
+  if (error) return <p className="text-red-600 text-center text-lg">{error}</p>;
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 p-6 bg-blue-40 border border-gray-200 rounded-lg shadow-lg">
-     
-      <p className="text-gray-700 mb-10 font-semibold text-2xl">Total Records: {totalRecords}</p>
+    <div className="max-w-7xl mx-auto mt-10 p-8 bg-white border border-gray-300 rounded-lg shadow-xl">
+      <p className="text-gray-800 mb-12 font-bold text-3xl text-center">Total Records: {totalRecords}</p>
 
-      {/* Gender Distribution */}
-      <div className="flex flex-col md:flex-row md:space-x-10">
-        <div className="w-full md:w-1/2">
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">Gender Distribution</h2>
-          <ResponsiveContainer width="100%" height={400}>
+      <div className="flex flex-col lg:flex-row lg:space-x-14">
+        <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
+          <h2 className="text-xl font-semibold mb-6 text-gray-800 text-center">Gender Distribution</h2>
+          <ResponsiveContainer width="100%" height={350}>
             <PieChart>
               <Pie
                 data={genderData}
@@ -73,14 +71,14 @@ const Dashboard = () => {
                 cy="50%"
                 labelLine={false}
                 label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                outerRadius={100}
+                outerRadius={110}
                 fill="#8884d8"
                 dataKey="count"
               >
                 {genderData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={genderColors[entry.gender.toLowerCase()]} // Map gender to specific color
+                    fill={genderColors[entry.gender.toLowerCase()]} 
                   />
                 ))}
               </Pie>
@@ -89,10 +87,9 @@ const Dashboard = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Age Distribution by Gender */}
-        <div className="w-full md:w-1/2 mt-10 md:mt-0">
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">Age Distribution by Gender</h2>
-          <ResponsiveContainer width="100%" height={400}>
+        <div className="w-full lg:w-1/2">
+          <h2 className="text-xl font-semibold mb-6 text-gray-800 text-center">Age Distribution by Gender</h2>
+          <ResponsiveContainer width="100%" height={350}>
             <BarChart data={ageData}>
               <XAxis dataKey="age_range" />
               <YAxis />
