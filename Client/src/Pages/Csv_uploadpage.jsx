@@ -202,7 +202,7 @@ const FileUpload = () => {
         <div 
           className="p-8 rounded-md" 
           style={{ 
-            backgroundColor: 'rgba(255, 255, 255, 0.15)', // Lightening the background color
+            backgroundColor: 'rgba(255, 255, 255, 0.15)', 
           }}
         >
           <div
